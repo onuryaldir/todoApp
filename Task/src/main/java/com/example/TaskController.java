@@ -3,22 +3,24 @@ package com.example;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @RequestMapping("api/v1/tasks")
-public class TaskController {
+public record TaskController(TaskService taskService) {
 
-    private final TaskService taskService = new TaskService();
+
     @PostMapping
     public void addTask(@RequestBody TaskAddRequest taskAddRequest){
         System.out.println(taskAddRequest.toString());
         taskService.addTaskService(taskAddRequest);
     }
     @GetMapping
-    public void listTasks(){
+    public List<Task> listTasks(){
 
         System.out.println("Get Yaptim");
-
+        return taskService.getList();
     }
     @DeleteMapping
     public void deleteTask(){}
