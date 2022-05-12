@@ -1,9 +1,10 @@
 package com.example;
 
-public record TaskAddRequest( String description,
+public record TaskAddRequest( Integer Id,
+                              String description,
                               Integer userId,
                               Integer groupId,
-                              boolean isActive
+                              Boolean isActive
 ) {
 
 }

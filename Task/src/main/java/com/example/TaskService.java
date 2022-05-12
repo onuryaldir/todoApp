@@ -1,9 +1,9 @@
 package com.example;
 
-import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public record TaskService(TaskRepository taskRepository) {
@@ -19,9 +19,34 @@ public record TaskService(TaskRepository taskRepository) {
     System.out.println("SA");
     taskRepository.save(task);
     }
-    public List<Task> getList(){
 
 
-        return taskRepository.findAll();
+    public List<Task> getUserActiveTaskList(Integer userId,Boolean isActive){
+
+        return taskRepository.findByUserId(userId,isActive);
+
+    }
+
+    public void deleteTask(Integer taskId){
+
+
+        taskRepository.deleteById(taskId);
+    }
+
+    public Optional<Task> findTask(Integer taskId){
+
+        return taskRepository.findById(taskId);
+    }
+
+    public void updateTask(TaskAddRequest taskAddRequest) {
+
+        Task t = findTask(taskAddRequest.Id()).get();
+        System.out.println(taskAddRequest.isActive());
+        if(t.getDescription()!=taskAddRequest.description() && taskAddRequest.description()!=null)
+            taskRepository.updateDesc(taskAddRequest.description(),t.getId());
+        if(t.getGroupId()!=taskAddRequest.groupId() && taskAddRequest.groupId()!=null)
+            taskRepository.updateGroup(taskAddRequest.groupId(),t.getId());
+       if(taskAddRequest.isActive()!=null && t.isActive()!=taskAddRequest.isActive() )
+            taskRepository.updateActivity(taskAddRequest.isActive(), t.getId());
     }
 }

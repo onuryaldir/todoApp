@@ -4,6 +4,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
+import java.util.Optional;
 
 @Slf4j
 @RestController
@@ -16,15 +18,30 @@ public record TaskController(TaskService taskService) {
         System.out.println(taskAddRequest.toString());
         taskService.addTaskService(taskAddRequest);
     }
-    @GetMapping
-    public List<Task> listTasks(){
 
-        System.out.println("Get Yaptim");
-        return taskService.getList();
-    }
     @DeleteMapping
-    public void deleteTask(){}
+    public void deleteTask(@RequestBody Map<String,Integer> req){
+
+        taskService.deleteTask(req.get("Id"));
+    }
 
     @PutMapping
-    public void updateTask(){}
+    public void updateTask(@RequestBody TaskAddRequest taskAddRequest){
+
+       taskService.updateTask(taskAddRequest);
+
+
+
+    }
+
+    @PostMapping("tasklist")
+        public List<Task> getUserTasks(@RequestBody Map<String,String> req){
+
+        System.out.println(req);
+        return taskService.getUserActiveTaskList(Integer.valueOf(req.get("userId")), Boolean.parseBoolean(req.get("active")));
+    }
+
+
+
+
 }
