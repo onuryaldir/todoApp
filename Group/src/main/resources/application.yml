@@ -1,11 +1,11 @@
 server:
-  port: 3000
+  port: 3010
 spring:
   application:
-    name: task
+    name: group
   datasource:
     password: password
-    url: jdbc:postgresql://localhost:5432/Task
+    url: jdbc:postgresql://localhost:5432/Group
     username: postgres
   jpa:
     hibernate:

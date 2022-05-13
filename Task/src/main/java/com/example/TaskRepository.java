@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface TaskRepository extends JpaRepository<Task,Integer> {
@@ -28,5 +29,11 @@ public interface TaskRepository extends JpaRepository<Task,Integer> {
     @Query("update Task t set t.groupId =?1 where t.Id=?2")
     public void updateGroup(Integer groupId, Integer Id);
 
+    @Query("update Task t set t.groupId =?1 where t.groupId=?2")
+    public void deleteGroupById(Integer b,Integer groupId);
 
+    @Query("update Task t set t.dueDate=?1 where t.Id=?2")
+    public void updateDueDate(Date dueDate, Integer Id);
+    @Query("update Task t set t.priority=?1 where t.Id=?2")
+    void updatePriority(Integer priority, Integer Id);
 }

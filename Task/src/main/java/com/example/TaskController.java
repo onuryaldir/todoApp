@@ -14,23 +14,36 @@ public record TaskController(TaskService taskService) {
 
 
     @PostMapping
-    public void addTask(@RequestBody TaskAddRequest taskAddRequest){
+    public String addTask(@RequestBody TaskAddRequest taskAddRequest){
         System.out.println(taskAddRequest.toString());
-        taskService.addTaskService(taskAddRequest);
+        if(1<=taskAddRequest.priority() && taskAddRequest.priority()<=5) {
+            taskService.addTaskService(taskAddRequest);
+            return "done";
+        }
+         return "priority must be between 1-5";
     }
 
     @DeleteMapping
-    public void deleteTask(@RequestBody Map<String,Integer> req){
+    public String deleteTask(@RequestBody Map<String,Integer> req){
 
         taskService.deleteTask(req.get("Id"));
-    }
 
+
+        return "done";
+    }
+    @DeleteMapping("/group")
+    public String deleteGroup(@RequestBody Map<String,Integer> req){
+
+        taskService.deleteGroup(req.get("groupId"));
+
+        return "done";
+    }
     @PutMapping
-    public void updateTask(@RequestBody TaskAddRequest taskAddRequest){
+    public String updateTask(@RequestBody TaskAddRequest taskAddRequest){
 
        taskService.updateTask(taskAddRequest);
 
-
+       return "done";
 
     }
 

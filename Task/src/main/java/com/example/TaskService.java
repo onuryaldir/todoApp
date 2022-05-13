@@ -15,6 +15,8 @@ public record TaskService(TaskRepository taskRepository) {
             .groupId(req.groupId())
             .userId(req.userId())
             .isActive(req.isActive())
+            .priority(req.priority())
+            .dueDate(req.dueDate())
             .build();
     System.out.println("SA");
     taskRepository.save(task);
@@ -48,5 +50,14 @@ public record TaskService(TaskRepository taskRepository) {
             taskRepository.updateGroup(taskAddRequest.groupId(),t.getId());
        if(taskAddRequest.isActive()!=null && t.isActive()!=taskAddRequest.isActive() )
             taskRepository.updateActivity(taskAddRequest.isActive(), t.getId());
+       if(taskAddRequest.dueDate()!=null && t.getDueDate()!= taskAddRequest.dueDate())
+           taskRepository.updateDueDate(taskAddRequest.dueDate(),t.getId());
+       if(taskAddRequest.priority()!=null && t.getPriority()!=taskAddRequest.priority())
+           taskRepository.updatePriority(taskAddRequest.priority(),t.getId());
+    }
+
+    public void deleteGroup(Integer groupId) {
+
+        taskRepository.deleteGroupById(null,groupId);
     }
 }
