@@ -1,6 +1,5 @@
 package com.example;
 
-import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -13,21 +12,20 @@ import javax.persistence.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Groups {
+public class Users {
 
     @Id
     @SequenceGenerator(
 
-            name= "Group_id_sequence",
-            sequenceName = "Group_id_sequence"
-
+            name="User_id_sequence",
+            sequenceName = "User_id_sequence"
     )
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "Group_id_sequence"
+            generator = "User_id_sequence"
     )
-    private Integer Id;
-    private String name;
-    private Integer userId;
 
+    private Integer Id;
+    private String userName;
+    private String password;
 }

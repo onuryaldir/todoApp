@@ -58,6 +58,8 @@ public record TaskService(TaskRepository taskRepository) {
 
     public void deleteGroup(Integer groupId) {
 
-        taskRepository.deleteGroupById(null,groupId);
+        List<Task> t= taskRepository.findByGroupId(groupId);
+        t.forEach((n)-> n.setGroupId(null));
+        taskRepository.saveAll(t);
     }
 }

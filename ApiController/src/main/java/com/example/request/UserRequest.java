@@ -1,7 +1,7 @@
-package com.example;
+package com.example.request;
 
 public record UserRequest(Integer Id,
-                          String userName,
+                          String username,
                           String password
 ) {
 
