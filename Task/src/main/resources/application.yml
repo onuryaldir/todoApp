@@ -5,7 +5,7 @@ spring:
     name: task
   datasource:
     password: password
-    url: jdbc:postgresql://localhost:5432/Task
+    url:  jdbc:postgresql://host.docker.internal:5432/Task
     username: postgres
   jpa:
     hibernate:

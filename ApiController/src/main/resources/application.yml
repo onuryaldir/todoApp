@@ -1,3 +1,4 @@
 spring:
+  port: 8080
   main:
     allow-circular-references: true

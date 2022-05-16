@@ -5,7 +5,7 @@ spring:
     name: group
   datasource:
     password: password
-    url: jdbc:postgresql://localhost:5432/Group
+    url: jdbc:postgresql://host.docker.internal:5432/Group
     username: postgres
   jpa:
     hibernate:

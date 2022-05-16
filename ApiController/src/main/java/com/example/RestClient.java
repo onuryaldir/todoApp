@@ -29,17 +29,17 @@ import java.util.Map;
 @Service
 public class RestClient {
 
-    public static final String ADD_USER_API="http://localhost:3020/api/v1/users"; //post w body
-    public static final String GET_USER_API="http://localhost:3020/api/v1/users/getuser"; //post username, post password;
-    public static final String ADD_GROUP_API="http://localhost:3010/api/v1/groups"; // post groupRequest;
-    public static final String DELETE_GROUP_API="http://localhost:3010/api/v1/groups"; // Delete Id
-    public static final String UPDATE_GROUP_API="http://localhost:3010/api/v1/groups";// PUT groupRequest;
-    public static final String GET_GROUP_LIST_API="http://localhost:3010/api/v1/groups/grouplist"; //POST userId;
-    public static final String ADD_TASK_API="http://localhost:3000/api/v1/tasks"; //taskAddReq POST
-    public static final String DELETE_TASK_API="http://localhost:3000/api/v1/tasks"; // delete Id;
-    public static final String DELETE_GROUP_FROMTASK_API="http://localhost:3000/api/v1/tasks/group"; //delete groupId
-    public static final String UPDATE_TASK_API="http://localhost:3000/api/v1/tasks"; //PUT taskReq;
-    public static final String GET_USER_TASK_API="http://localhost:3000/api/v1/tasks/tasklist"; // post userId and bool;
+    public static final String ADD_USER_API="http://host.docker.internal:3020/api/v1/users"; //post w body
+    public static final String GET_USER_API="http://host.docker.internal:3020/api/v1/users/getuser"; //post username, post password;
+    public static final String ADD_GROUP_API="http://host.docker.internal:3010/api/v1/groups"; // post groupRequest;
+    public static final String DELETE_GROUP_API="http://host.docker.internal:3010/api/v1/groups"; // Delete Id
+    public static final String UPDATE_GROUP_API="http://host.docker.internal:3010/api/v1/groups";// PUT groupRequest;
+    public static final String GET_GROUP_LIST_API="http://host.docker.internal:3010/api/v1/groups/grouplist"; //POST userId;
+    public static final String ADD_TASK_API="http://host.docker.internal:3000/api/v1/tasks"; //taskAddReq POST
+    public static final String DELETE_TASK_API="http://host.docker.internal:3000/api/v1/tasks"; // delete Id;
+    public static final String DELETE_GROUP_FROMTASK_API="http://host.docker.internal:3000/api/v1/tasks/group"; //delete groupId
+    public static final String UPDATE_TASK_API="http://host.docker.internal:3000/api/v1/tasks"; //PUT taskReq;
+    public static final String GET_USER_TASK_API="http://host.docker.internal:3000/api/v1/tasks/tasklist"; // post userId and bool;
 
 
 
