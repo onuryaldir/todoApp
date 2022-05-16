@@ -37,6 +37,9 @@ Postman Collection
 
 ```bash
 https://www.getpostman.com/collections/cfbfd438498a7b500e6
+if link does not work
+plain collection json is here
+https://www.file.io/C0aW/download/TeoKlDsCq6zL 
 ```
 
   
