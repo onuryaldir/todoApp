@@ -1,16 +1,16 @@
 services:
-  postgres:
-    container_name: postgres
+  db:
     image: postgres
+    container_name: db
     environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
-      PGDATA: /data/postgres
-    volumes:
-      - postgres:/data/postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=password
+      - PGDATA=data/db
     ports:
       - "5432:5432"
-    restart: unless-stopped
+    volumes:
+      - db:/data/postgres
+    restart: always
   pgadmin:
     container_name: pgadmin
     image: dpage/pgadmin4
@@ -47,8 +47,6 @@ services:
   #      - zipkin
   #      - eureka-server
 
-
-
   web-server:
     image: webapp:latest
     container_name: webapp
@@ -59,9 +57,6 @@ services:
       - "8080:8080"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-      - postgres
     depends_on:
       - postgres
   user-api:
@@ -74,13 +69,9 @@ services:
       - "3020:3020"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-      - postgres
-      - web-app
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/User
     depends_on:
       - postgres
-      - web-app
   group-api:
     image: groupapi:latest
     container_name: groupapi
@@ -91,13 +82,9 @@ services:
       - "3010:3010"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-      - postgres
-      - web-app
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/Group
     depends_on:
       - postgres
-      - web-app
   task-api:
     image: taskapi:latest
     container_name: taskapi
@@ -108,20 +95,9 @@ services:
       - "3000:3000"
     environment:
       - SPRING_PROFILES_ACTIVE=docker
-    networks:
-      - spring
-      - postgres
-      - web-app
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/Task
     depends_on:
       - postgres
-      - web-app
-networks:
-  postgres:
-    driver: bridge
-  spring:
-    driver: bridge
-  web-app:
-    driver: bridge
 volumes:
-  postgres:
+  db:
   pgadmin:
