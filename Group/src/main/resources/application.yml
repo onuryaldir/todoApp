@@ -5,11 +5,11 @@ spring:
     name: group
   datasource:
     password: password
-    url: jdbc:postgresql://postgres:5432/Group
-    username: postgres
+    url: jdbc:postgresql://db:5432/Group
+    username: onuryaldir
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect

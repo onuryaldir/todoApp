@@ -1,5 +1,8 @@
 services:
   db:
+    build:
+      context: ./Docker
+      dockerfile: db.Dockerfile
     image: postgres
     container_name: db
     environment:
@@ -58,7 +61,7 @@ services:
     environment:
       - SPRING_PROFILES_ACTIVE=docker
     depends_on:
-      - postgres
+      - db
   user-api:
     image: userapi:latest
     container_name: userapi
@@ -71,7 +74,7 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/User
     depends_on:
-      - postgres
+      - db
   group-api:
     image: groupapi:latest
     container_name: groupapi
@@ -84,7 +87,7 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/Group
     depends_on:
-      - postgres
+      - db
   task-api:
     image: taskapi:latest
     container_name: taskapi
@@ -97,7 +100,7 @@ services:
       - SPRING_PROFILES_ACTIVE=docker
       - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/Task
     depends_on:
-      - postgres
+      - db
 volumes:
   db:
   pgadmin:

@@ -5,11 +5,11 @@ spring:
     name: task
   datasource:
     password: password
-    url: jdbc:postgresql://host.docker.internal:5432/Task
-    username: postgres
+    url: jdbc:postgresql://db:5432/Task
+    username: onuryaldir
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
